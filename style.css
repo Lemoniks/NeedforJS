@@ -50,7 +50,6 @@ table {
   height: 100px;
   background: transparent url("./image/player.png") center / cover no-repeat;
   position: absolute;
-  left: 175px;
   bottom: 15px;
 }
 .enemy {
@@ -75,13 +74,78 @@ table {
   height: 100vh;
   position: relative;
   margin: auto;
-  background: #222;
+  background: #62635B;
   overflow: hidden;
+  box-shadow: 0px 1px 32px 25px rgba(71,62,71,1);
+
+
 }
 .line {
   position: absolute;
   width: 10px;
   height: 50px;
-  background: #fff;
+  background: #E9EB9A;
   left: 195px;
+  box-shadow: 0px 2px 32px 8px rgba(245,245,61,1);
+
 }
+.start {
+  position: absolute;
+  left: 35%;
+  top: 20%;
+  width: 30%;
+  margin: 0;
+  padding: 2rem 0;
+  text-align: center;
+  z-index: 200;
+  color: #fff;
+  font-size: 1.5rem;
+  background: #B417E5;
+  cursor: pointer;
+  font-family: 'Grandstander', cursive;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: .6s;
+}
+.start:hover {
+  box-shadow: -2px 1px 32px 25px rgba(189,70,189,0.48);
+}
+.med {
+  top: 40%;
+}
+.hard {
+  top: 60%;
+}
+
+
+.score {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 10%;
+  background: #A317E5;
+  padding: 1rem 0;
+  z-index: 200;
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: 'Grandstander', cursive;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 30px
+  }
+
+  .scorebest {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 10%;
+  background: #A317E5;
+  padding: 1rem 0;
+  z-index: 200;
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: 'Grandstander', cursive;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 30px
+  }
