@@ -1,4 +1,4 @@
-const MAX_ENEMY = 6;
+const MAX_ENEMY = 7;
 
 
 const score = document.querySelector(".score"),
@@ -18,7 +18,7 @@ audio.src = 'audio.mp3';
 audio.type = 'audio/mp3';
 audio.style.cssText = `position: absolute; top: -1000px;`;
 
-start.addEventListener("click", startGame);
+start.addEventListener("click", EasyGame);
 med.addEventListener("click", MedGame);
 hard.addEventListener("click", HardGame);
 document.addEventListener("keydown", startRun);
@@ -35,8 +35,8 @@ const setting = {
   start: false,
   score: 0,
   bestscore: 0,
-  speed: 4,
-  traffic: 3
+  speed: 0,
+  traffic: 0
 };
 
 score.classList.add("hide");
@@ -82,15 +82,28 @@ function startGame() {
   requestAnimationFrame(playGame);
 }
 
+function EasyGame() {
+  setting.speed = 4;
+  setting.traffic = 3;
+  car.style.background =
+    'transparent url("./image/playerEasy.png") center / cover no-repeat';
+  startGame();
+}
+
 function MedGame () {
   setting.speed = 5;
-  setting.traffic = 2
+  setting.traffic = 2;
+  car.style.background =
+    'transparent url("./image/playerMed.png") center / cover no-repeat';
+
   startGame();
 }
 
 function HardGame () {
   setting.speed = 6;
   setting.traffic = 1;
+  car.style.background =
+    'transparent url("./image/playerHard.png") center / cover no-repeat';
   startGame();
 }
 
