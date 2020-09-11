@@ -7,6 +7,8 @@ const score = document.querySelector(".score"),
   med = document.querySelector(".med"),
   hard = document.querySelector(".hard"),
   gameArea = document.querySelector(".gameArea"),
+  treesideLeft = document.querySelector(".treesideLeft"),
+  treesideRight = document.querySelector(".treesideRight"),
   car = document.createElement("div");
   
 
@@ -42,6 +44,7 @@ const setting = {
 score.classList.add("hide");
 scorebest.innerHTML = "BEST SCORE:<br>" + localStorage.getItem("bestscore");
 
+
 function getQuantityElements(heightElement) {
   return document.documentElement.clientHeight / heightElement + 1;
 }
@@ -51,10 +54,27 @@ function startGame() {
   med.classList.add("hide");
   hard.classList.add("hide");
   gameArea.innerHTML = '';
+  treesideLeft.innerHTML = '';
+  treesideRight.innerHTML = '';
   car.style.left = '175px';
   car.style.top = 'auto';
 
-  
+  for (let i = 0; i < getQuantityElements(100); i++) {
+    const tree = document.createElement('div');
+    tree.classList.add('tree');
+    tree.style.left = Math.random() * (treesideLeft.offsetWidth - 50) + 'px';
+    tree.y = 100 * (i);
+    tree.style.top = tree.y + 'px';
+    treesideLeft.append(tree);
+  }
+  for (let i = 0; i < getQuantityElements(100); i++) {
+    const tree = document.createElement('div');
+    tree.classList.add('tree');
+    tree.style.right = Math.random() * (treesideRight.offsetWidth - 50) + 'px';
+    tree.y = 100 * (i);
+    tree.style.top = tree.y + 'px';
+    treesideRight.append(tree);
+  }
   for (let i = 0; i < getQuantityElements(100); i++) {
     const line = document.createElement('div');
     line.classList.add('line');
@@ -95,7 +115,6 @@ function MedGame () {
   setting.traffic = 2;
   car.style.background =
     'transparent url("./image/playerMed.png") center / cover no-repeat';
-
   startGame();
 }
 
@@ -157,7 +176,14 @@ function moveRoad () {
     line.style.top = line.y + 'px';
     if (line.y >= document.documentElement.clientHeight) {
       line.y = -100;
-
+    }
+  });
+  let trees = document.querySelectorAll('.tree');
+  trees.forEach(function (tree) {
+    tree.y += setting.speed;
+    tree.style.top = tree.y + 'px';
+    if (tree.y >= document.documentElement.clientHeight) {
+      tree.y = -100;
     }
   });
 }
@@ -167,8 +193,6 @@ function moveEnemy () {
   enemy.forEach(function(item) {
     let carRect = car.getBoundingClientRect();
     let enemyRect = item.getBoundingClientRect();
-    let LS = Number(localStorage.getItem("bestscore"));
-
     if (carRect.top <= enemyRect.bottom && 
       carRect.right >= enemyRect.left && 
       carRect.left <= enemyRect.right && 
